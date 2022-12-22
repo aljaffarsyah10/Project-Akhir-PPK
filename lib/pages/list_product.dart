@@ -6,7 +6,7 @@ import '../providers/auth.dart';
 
 import '../pages/add_product_page.dart';
 import '../widgets/product_item.dart';
-import 'SideNavbar.dart';
+import 'side_navbar.dart';
 
 class ListProductPage extends StatefulWidget {
   static const route = "/list_product";

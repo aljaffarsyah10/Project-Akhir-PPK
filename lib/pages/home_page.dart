@@ -1,4 +1,5 @@
 import 'package:autentikasi/pages/list_product.dart';
+import 'package:autentikasi/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +8,7 @@ import '../providers/auth.dart';
 
 import '../pages/add_product_page.dart';
 import '../widgets/product_item.dart';
-import 'SideNavbar.dart';
+import 'side_navbar.dart';
 
 class HomePage extends StatefulWidget {
   static const route = "/list_product";
@@ -97,11 +98,6 @@ class _HomeState extends State<HomePage> {
       body: <Widget>[
         ListProductPage(),
         Container(
-          color: Colors.green,
-          alignment: Alignment.center,
-          child: const Text('Page 2'),
-        ),
-        Container(
           color: Colors.blue,
           alignment: Alignment.center,
           child: const Text('Page 3'),
@@ -109,8 +105,9 @@ class _HomeState extends State<HomePage> {
         Container(
           color: Colors.blue,
           alignment: Alignment.center,
-          child: const Text('Profile'),
+          child: const Text('Page 3'),
         ),
+        ProfilePage(),
       ][currentPageIndex],
 
       // appBar: AppBar(

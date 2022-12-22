@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  dotted_border:
+    dependency: "direct dev"
+    description:
+      name: dotted_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -226,6 +233,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1+1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   path_provider:
     dependency: transitive
     description:
@@ -324,6 +345,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.7"
+  scoped_model:
+    dependency: "direct dev"
+    description:
+      name: scoped_model
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   shared_preferences:
     dependency: "direct dev"
     description:
