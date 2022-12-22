@@ -1,3 +1,4 @@
+import 'package:autentikasi/pages/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,15 +7,16 @@ import '../providers/auth.dart';
 
 import '../pages/add_product_page.dart';
 import '../widgets/product_item.dart';
+import 'SideNavbar.dart';
 
 class HomePage extends StatefulWidget {
-  static const route = "/home";
+  static const route = "/list_product";
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeState extends State<HomePage> {
   bool isInit = true;
   bool isLoading = false;
 
@@ -57,45 +59,99 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
   }
 
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<Products>(context);
+
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.logout),
-          onPressed: () => Provider.of<Auth>(context, listen: false).logout(),
-        ),
-        title: Text("All Products"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => Navigator.pushNamed(context, AddProductPage.route),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.commute),
+            label: 'Commute',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.bookmark),
+            icon: Icon(Icons.bookmark_border),
+            label: 'Saved',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.person_rounded),
+            icon: Icon(Icons.person_rounded),
+            label: 'Profile',
           ),
         ],
       ),
-      body: (isLoading)
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : (prov.allProduct.length == 0)
-              ? Center(
-                  child: Text(
-                    "No Data",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: prov.allProduct.length,
-                  itemBuilder: (context, i) => ProductItem(
-                    prov.allProduct[i].id,
-                    prov.allProduct[i].title,
-                    prov.allProduct[i].price,
-                    prov.allProduct[i].updatedAt,
-                  ),
-                ),
+      body: <Widget>[
+        ListProductPage(),
+        Container(
+          color: Colors.green,
+          alignment: Alignment.center,
+          child: const Text('Page 2'),
+        ),
+        Container(
+          color: Colors.blue,
+          alignment: Alignment.center,
+          child: const Text('Page 3'),
+        ),
+        Container(
+          color: Colors.blue,
+          alignment: Alignment.center,
+          child: const Text('Profile'),
+        ),
+      ][currentPageIndex],
+
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     icon: Icon(Icons.logout),
+      //     onPressed: () => Provider.of<Auth>(context, listen: false).logout(),
+      //   ),
+      //   title: Text("All Products"),
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(Icons.add),
+      //       onPressed: () => Navigator.pushNamed(context, AddProductPage.route),
+      //     ),
+      //   ],
+      // ),
+
+      // body: ListProductPage(),
+
+      // bottomNavigationBar: NavigationBar(
+      //   onDestinationSelected: (int index) {
+      //     setState(() {
+      //       currentPageIndex = index;
+      //     });
+      //   },
+      //   selectedIndex: currentPageIndex,
+      //   destinations: const <Widget>[
+      //     NavigationDestination(
+      //       icon: Icon(Icons.explore),
+      //       label: 'Explore',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.commute),
+      //       label: 'Commute',
+      //     ),
+      //     NavigationDestination(
+      //       selectedIcon: Icon(Icons.bookmark),
+      //       icon: Icon(Icons.bookmark_border),
+      //       label: 'Saved',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
