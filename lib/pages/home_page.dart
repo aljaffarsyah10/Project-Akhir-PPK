@@ -1,115 +1,82 @@
+import 'package:autentikasi/pages/dashboard.dart';
+import 'package:autentikasi/pages/list_obat.dart';
 import 'package:autentikasi/pages/list_product.dart';
 import 'package:autentikasi/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:autentikasi/utils/constants.dart';
 
 import '../providers/products.dart';
-import '../providers/auth.dart';
-
-import '../pages/add_product_page.dart';
-import '../widgets/product_item.dart';
-import 'side_navbar.dart';
 
 class HomePage extends StatefulWidget {
-  static const route = "/list_product";
+  static const route = "/homepage";
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<HomePage> {
-  bool isInit = true;
-  bool isLoading = false;
-
-  @override
-  void didChangeDependencies() {
-    if (isInit) {
-      isLoading = true;
-      Provider.of<Products>(context, listen: false).inisialData().then((value) {
-        setState(() {
-          isLoading = false;
-        });
-      }).catchError(
-        (err) {
-          print(err);
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text("Error Occured"),
-                content: Text(err.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        isLoading = false;
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: Text("Okay"),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-      );
-
-      isInit = false;
-    }
-    super.didChangeDependencies();
-  }
-
-  int currentPageIndex = 0;
+  int currentPageIndex = 1;
+  int activeIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<Products>(context);
 
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Constants.scaffoldBackgroundColor,
+        buttonBackgroundColor: Colors.amber,
+        items: const <Widget>[
+          Icon(
+            FlutterIcons.ios_home_ion,
+            size: 30.0,
+            color: Colors.black87,
+          ),
+          Icon(
+            FlutterIcons.map_marker_radius_mco,
+            size: 30.0,
+            color: Colors.black87,
+          ),
+          Icon(
+            FlutterIcons.plus_ant,
+            size: 30.0,
+            color: Colors.black87,
+          ),
+          Icon(
+            FlutterIcons.heart_fea,
+            size: 30.0,
+            color: Colors.black87,
+          ),
+          Icon(
+            FlutterIcons.setting_ant,
+            size: 30.0,
+            color: Colors.black87,
+          ),
+        ],
+        onTap: (index) {
           setState(() {
             currentPageIndex = index;
           });
         },
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.commute),
-            label: 'Commute',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.bookmark),
-            icon: Icon(Icons.bookmark_border),
-            label: 'Saved',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person_rounded),
-            icon: Icon(Icons.person_rounded),
-            label: 'Profile',
-          ),
-        ],
       ),
-      body: <Widget>[
-        ListProductPage(),
-        Container(
-          color: Colors.blue,
-          alignment: Alignment.center,
-          child: const Text('Page 3'),
-        ),
-        Container(
-          color: Colors.blue,
-          alignment: Alignment.center,
-          child: const Text('Page 3'),
-        ),
-        ProfilePage(),
-      ][currentPageIndex],
-
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 300),
+        child: [
+          Dashboard(),
+          ListProductPage(),
+          ListObatPage(),
+          Container(
+            color: Colors.blue,
+            alignment: Alignment.center,
+            child: const Text('Page 3'),
+          ),
+          ProfilePage(),
+        ][currentPageIndex],
+      ),
       // appBar: AppBar(
       //   leading: IconButton(
       //     icon: Icon(Icons.logout),

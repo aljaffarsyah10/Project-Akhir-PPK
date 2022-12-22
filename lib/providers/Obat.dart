@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-import '../models/product.dart';
+import '../models/obat.dart';
 
-class Obat with ChangeNotifier {
+class Obatan with ChangeNotifier {
   String token, userId;
 
   void updateData(tokenData, uid) {
@@ -15,20 +15,21 @@ class Obat with ChangeNotifier {
     notifyListeners();
   }
 
-  String urlMaster = "https://project1-73c43-default-rtdb.firebaseio.com/";
-  List<Product> _allProduct = [];
+  String urlMaster = "https://oktagilangweb.000webhostapp.com/webservice/obat/";
+  List<Obat> _allObat = [];
 
-  List<Product> get allProduct => _allProduct;
+  List<Obat> get allObat => _allObat;
 
-  Future<void> addProduct(String title, String price) async {
-    Uri url = Uri.parse("$urlMaster/products.json?auth=$token");
+  Future<void> addObat(String nama_obat, String jenis, String guna) async {
+    Uri url = Uri.parse("$urlMaster");
     DateTime dateNow = DateTime.now();
     try {
       var response = await http.post(
         url,
         body: json.encode({
-          "title": title,
-          "price": price,
+          "nama_obat": nama_obat,
+          "jenis": jenis,
+          "guna": guna,
           "createdAt": dateNow.toString(),
           "updatedAt": dateNow.toString(),
           "userId": userId,
@@ -38,15 +39,16 @@ class Obat with ChangeNotifier {
       if (response.statusCode > 300 || response.statusCode < 200) {
         throw (response.statusCode);
       } else {
-        Product data = Product(
+        Obat data = Obat(
           id: json.decode(response.body)["name"].toString(),
-          title: title,
-          price: price,
+          nama_obat: nama_obat,
+          jenis: jenis,
+          guna: guna,
           createdAt: dateNow,
           updatedAt: dateNow,
         );
 
-        _allProduct.add(data);
+        _allObat.add(data);
         notifyListeners();
       }
     } catch (err) {
@@ -54,15 +56,16 @@ class Obat with ChangeNotifier {
     }
   }
 
-  void editProduct(String id, String title, String price) async {
-    Uri url = Uri.parse("$urlMaster/products/$id.json?auth=$token");
+  void editObat(String id, String nama_obat, String jenis, String guna) async {
+    Uri url = Uri.parse("$urlMaster");
     DateTime date = DateTime.now();
     try {
       var response = await http.patch(
         url,
         body: json.encode({
-          "title": title,
-          "price": price,
+          "nama_obat": nama_obat,
+          "jenis": jenis,
+          "guna": guna,
           "updatedAt": date.toString(),
         }),
       );
@@ -70,9 +73,10 @@ class Obat with ChangeNotifier {
       if (response.statusCode > 300 || response.statusCode < 200) {
         throw (response.statusCode);
       } else {
-        Product edit = _allProduct.firstWhere((element) => element.id == id);
-        edit.title = title;
-        edit.price = price;
+        Obat edit = _allObat.firstWhere((element) => element.id == id);
+        edit.nama_obat = nama_obat;
+        edit.jenis = jenis;
+        edit.guna = guna;
         edit.updatedAt = date;
         notifyListeners();
       }
@@ -81,8 +85,8 @@ class Obat with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) async {
-    Uri url = Uri.parse("$urlMaster/products/$id.json?auth=$token");
+  void deleteObat(String id) async {
+    Uri url = Uri.parse("$urlMaster");
 
     try {
       var response = await http.delete(url);
@@ -90,7 +94,7 @@ class Obat with ChangeNotifier {
       if (response.statusCode > 300 || response.statusCode < 200) {
         throw (response.statusCode);
       } else {
-        _allProduct.removeWhere((element) => element.id == id);
+        _allObat.removeWhere((element) => element.id == id);
         notifyListeners();
       }
     } catch (err) {
@@ -98,12 +102,12 @@ class Obat with ChangeNotifier {
     }
   }
 
-  Product selectById(String id) {
-    return _allProduct.firstWhere((element) => element.id == id);
+  Obat selectById(String id) {
+    return _allObat.firstWhere((element) => element.id == id);
   }
 
   Future<void> inisialData() async {
-    _allProduct = [];
+    _allObat = [];
     Uri url = Uri.parse(
         '$urlMaster/products.json?auth=$token&orderBy="userId"&equalTo="$userId"');
 
@@ -119,16 +123,16 @@ class Obat with ChangeNotifier {
         if (data != null) {
           data.forEach(
             (key, value) {
-              Product prod = Product(
+              Obat obat = Obat(
                 id: key,
-                title: value["title"],
-                price: value["price"],
+                nama_obat: value["nana_obat"],
+                jenis: value["jenis"],
                 createdAt:
                     DateFormat("yyyy-mm-dd hh:mm:ss").parse(value["createdAt"]),
                 updatedAt:
                     DateFormat("yyyy-mm-dd hh:mm:ss").parse(value["updatedAt"]),
               );
-              _allProduct.add(prod);
+              _allObat.add(obat);
             },
           );
         }

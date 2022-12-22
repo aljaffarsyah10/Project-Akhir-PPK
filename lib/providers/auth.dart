@@ -4,8 +4,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import './AuthException.dart';
 
 class Auth with ChangeNotifier {
+  // final _auth = FirebaseAuth.instance;
   Timer _authTimer;
   String _idToken, userId;
   DateTime _expiryDate;
@@ -154,4 +157,15 @@ class Auth with ChangeNotifier {
     notifyListeners();
     return true;
   }
+
+  // Future<AuthStatus> resetPassword({String email}) async {
+  //   var _status;
+  //   await _auth
+  //       .sendPasswordResetEmail(email: email)
+  //       .then((value) => _status = AuthStatus.successful)
+  //       .catchError(
+  //           (e) => _status = AuthExceptionHandler.handleAuthException(e));
+  //   return _status;
+  // }
+
 }

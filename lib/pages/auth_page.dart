@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:autentikasi/main.dart';
+import 'package:autentikasi/main.dart';
 import '../providers/auth.dart';
 
 const users = const {
@@ -45,6 +45,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<String> _recoverPassword(String name) {
+    // return Future.delayed(loginTime).then((_) async {
+    //   try {
+    //     await Provider.of<Auth>(context, listen: false).resetPassword();
+    //   } catch (err) {
+    //     print(err);
+    //     return err.toString();
+    //   }
+    //   return null;
+    // });
     print('Name: $name');
     return Future.delayed(loginTime).then((_) {
       if (!users.containsKey(name)) {
@@ -57,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-
       title: 'RSUD Labusel',
       // logo: 'assets/images/ecorp-lightblue.png',
       logo: 'assets/images/logo_labusel.jpg',
