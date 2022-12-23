@@ -1,4 +1,6 @@
-# autentikasi
+# Aplikasi Mobile RSUD Labuhanbatu Selatan
+
+## Cross Platform App dengan Flutter
 
 A new Flutter project.
 
