@@ -1,3 +1,4 @@
+import 'package:autentikasi/pages/album.dart';
 import 'package:autentikasi/pages/dashboard.dart';
 import 'package:autentikasi/pages/list_obat.dart';
 import 'package:autentikasi/pages/list_product.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:autentikasi/utils/constants.dart';
 
 import '../providers/products.dart';
+import 'daftar_obat.dart';
+import 'daftar_pasien.dart';
 
 class HomePage extends StatefulWidget {
   static const route = "/homepage";
@@ -19,8 +22,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  int currentPageIndex = 1;
-  int activeIndex = 1;
+  int currentPageIndex = 0;
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +71,16 @@ class _HomeState extends State<HomePage> {
         child: [
           Dashboard(),
           ListProductPage(),
-          ListObatPage(),
-          Container(
-            color: Colors.blue,
-            alignment: Alignment.center,
-            child: const Text('Page 3'),
-          ),
-          ProfilePage(),
+          DaftarObatView(),
+          DaftarPasienView(),
+          // ListObatPage(),
+          // Container(
+          //   color: Colors.blue,
+          //   alignment: Alignment.center,
+          //   child: const Text('Page 3'),
+          // ),
+          albumPage(),
+          // ProfilePage(),
         ][currentPageIndex],
       ),
       // appBar: AppBar(

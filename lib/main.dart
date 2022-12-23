@@ -1,8 +1,8 @@
 import 'package:autentikasi/pages/dashboard.dart';
-import 'package:autentikasi/providers/Obat.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 import './providers/products.dart';
 import './providers/auth.dart';
@@ -11,13 +11,15 @@ import './pages/home_page.dart';
 import './pages/auth_page.dart';
 import './pages/add_product_page.dart';
 import './pages/edit_product_page.dart';
-import 'pages/add_obat_page.dart';
-import 'pages/edit_obat_page.dart';
 
 // void main() async {
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(); //initilization of Firebase app
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
+  // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runApp(MyApp());
 }
 
@@ -35,11 +37,6 @@ class MyApp extends StatelessWidget {
           create: (context) => Products(),
           update: (context, auth, products) =>
               products..updateData(auth.token, auth.userId),
-        ),
-        ChangeNotifierProxyProvider<Auth, Obatan>(
-          create: (context) => Obatan(),
-          update: (context, auth, Obatan) =>
-              Obatan..updateData(auth.token, auth.userId),
         ),
       ],
       builder: (context, child) => Consumer<Auth>(
@@ -83,8 +80,6 @@ class MyApp extends StatelessWidget {
           routes: {
             AddProductPage.route: (ctx) => AddProductPage(),
             EditProductPage.route: (ctx) => EditProductPage(),
-            AddObatPage.route: (ctx) => AddObatPage(),
-            EditObatPage.route: (ctx) => EditObatPage(),
           },
         ),
       ),

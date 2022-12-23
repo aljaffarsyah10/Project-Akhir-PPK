@@ -81,6 +81,8 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> login(String email, String password) async {
+    Map<String, dynamic> _data = {};
+
     Uri url = Uri.parse(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyADIry61SxavjUXpKGhA6eBxDMaJIk21zE");
     print(email);
@@ -94,12 +96,13 @@ class Auth with ChangeNotifier {
           "returnSecureToken": true,
         }),
       );
-
       var responseData = json.decode(response.body);
+      // print(responseData);
 
       if (responseData['error'] != null) {
         throw responseData['error']["message"];
       }
+
       _tempidToken = responseData["idToken"];
       tempuserId = responseData["localId"];
       _tempexpiryDate = DateTime.now().add(
@@ -107,6 +110,8 @@ class Auth with ChangeNotifier {
           seconds: int.parse(responseData["expiresIn"]),
         ),
       );
+      _data = responseData;
+      // notifyListeners();
     } catch (error) {
       throw error;
     }
