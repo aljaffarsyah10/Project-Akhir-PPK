@@ -11,7 +11,7 @@ class MiniNewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Helper.nextScreen(context, SingleNewsPage());
+        // Helper.nextScreen(context, SingleNewsPage());
       },
       child: Container(
         padding: EdgeInsets.all(12.0),

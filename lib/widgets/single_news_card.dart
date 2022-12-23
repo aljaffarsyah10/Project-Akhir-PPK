@@ -8,7 +8,7 @@ class SingleNewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Helper.nextScreen(context, SingleNewsPage());
+        // Helper.nextScreen(context, SingleNewsPage());
       },
       child: Column(
         children: [
@@ -21,7 +21,7 @@ class SingleNewsCard extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  "assets/images/trump.png",
+                  "assets/images/berita1.jpg",
                 ),
               ),
             ),
@@ -30,7 +30,7 @@ class SingleNewsCard extends StatelessWidget {
             height: 5.0,
           ),
           Text(
-            "Jacob Blake: Trump visits Kenosha to back police...",
+            "Update: Daftar Terbaru Sirup Obat yang Aman Menurut BPOM",
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20.0,
@@ -54,7 +54,7 @@ class SingleNewsCard extends StatelessWidget {
                 ),
               ),
               Text(
-                "Politics",
+                "Medical",
                 style: TextStyle(
                   fontSize: 14.0,
                   color: Color.fromRGBO(251, 89, 84, 1),

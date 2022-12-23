@@ -37,7 +37,7 @@ class AddProductPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Product"),
+        title: Text("Add Task"),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
@@ -58,7 +58,7 @@ class AddProductPage extends StatelessWidget {
                   controller: titleController,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: "Product Name",
+                    labelText: "Nama Tugas",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -68,10 +68,11 @@ class AddProductPage extends StatelessWidget {
                 TextField(
                   autocorrect: false,
                   controller: priceController,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
+                  // keyboardType: TextInputType.number,
+                  // textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: "Price",
+                    labelText: "Deskripsi",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),

@@ -1,8 +1,13 @@
+import 'package:autentikasi/pages/album.dart';
+import 'package:autentikasi/pages/daftar_obat.dart';
 import 'package:autentikasi/pages/home_page.dart';
+import 'package:autentikasi/pages/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth.dart';
 import '../providers/products.dart';
+import 'daftar_pasien.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class SideNavbar extends StatelessWidget {
   @override
@@ -16,17 +21,17 @@ class SideNavbar extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              'Oflutter.com',
+              'Okta Gilang Al Jaffarsyah',
               style: TextStyle(color: Colors.grey[200]),
             ),
             accountEmail: Text(
-              'example@gmail.com',
+              'Aljaffarsyah10@gmail.com',
               style: TextStyle(color: Colors.grey[200]),
             ),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
-                child: Image.network(
-                  'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                child: Image.asset(
+                  "assets/images/okta.jpeg",
                   fit: BoxFit.cover,
                   width: 90,
                   height: 90,
@@ -48,24 +53,32 @@ class SideNavbar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.input),
-            title: Text('Welcome'),
+            title: Text('Homepage'),
             onTap: () => Navigator.pushNamed(context, HomePage.route),
             // onTap: () => {},
           ),
           ListTile(
-            leading: Icon(Icons.verified_user),
-            title: Text('Profile'),
-            // onTap: () => {Navigator.of(context).pop()},
-          ),
-          ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            title: Text('Update Profile'),
+            onTap: () => Navigator.pushNamed(context, albumPage.route),
             // onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
-            title: Text('Feedback'),
-            onTap: () => Navigator.of(context).pop(),
+            leading: Icon(FlutterIcons.tasklist_oct),
+            title: Text('List Task'),
+            onTap: () => Navigator.pushNamed(context, ListProductPage.route),
+            // onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            // leading: Icon(Icons.border_color),
+            leading: Icon(FlutterIcons.medical_bag_mco),
+            title: Text('Medical Cabinet'),
+            onTap: () => Navigator.pushNamed(context, DaftarObatView.route),
+          ),
+          ListTile(
+            leading: Icon(FlutterIcons.person_add_mdi),
+            title: Text('List Patient'),
+            onTap: () => Navigator.pushNamed(context, DaftarPasienView.route),
           ),
           Divider(),
           ListTile(

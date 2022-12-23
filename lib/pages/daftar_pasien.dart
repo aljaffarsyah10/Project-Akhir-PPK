@@ -26,6 +26,7 @@ class Pasien {
 }
 
 class DaftarPasienView extends StatelessWidget {
+  static const route = "daftar_pasienview";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +36,7 @@ class DaftarPasienView extends StatelessWidget {
         //   icon: Icon(Icons.logout),
         //   onPressed: () => Provider.of<Auth>(context, listen: false).logout(),
         // ),
-        title: Text("All Pasien"),
+        title: Text("All Patient"),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),

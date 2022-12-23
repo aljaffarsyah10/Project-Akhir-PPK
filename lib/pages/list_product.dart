@@ -68,7 +68,7 @@ class _ListProductState extends State<ListProductPage> {
         //   icon: Icon(Icons.logout),
         //   onPressed: () => Provider.of<Auth>(context, listen: false).logout(),
         // ),
-        title: Text("All Products"),
+        title: Text("All Task"),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),

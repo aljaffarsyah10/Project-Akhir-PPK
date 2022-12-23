@@ -86,7 +86,7 @@ class SingleNewsPage extends StatelessWidget {
                         height: 30.0,
                       ),
                       Text(
-                        "Jacob Blake: Trump visits Kenosha to back police...",
+                        "Update: Daftar Terbaru Sirup Obat yang Aman Menurut BPOM",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0,

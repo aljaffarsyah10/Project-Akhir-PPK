@@ -15,7 +15,7 @@ import 'daftar_obat.dart';
 import 'daftar_pasien.dart';
 
 class HomePage extends StatefulWidget {
-  static const route = "/homepage";
+  static const route = "homepage";
 
   @override
   _HomeState createState() => _HomeState();
@@ -40,17 +40,19 @@ class _HomeState extends State<HomePage> {
             color: Colors.black87,
           ),
           Icon(
-            FlutterIcons.map_marker_radius_mco,
+            // FlutterIcons.map_marker_radius_mco,
+            FlutterIcons.tasklist_oct,
             size: 30.0,
             color: Colors.black87,
           ),
           Icon(
-            FlutterIcons.plus_ant,
+            // FlutterIcons.plus_ant,
+            FlutterIcons.medical_bag_mco,
             size: 30.0,
             color: Colors.black87,
           ),
           Icon(
-            FlutterIcons.heart_fea,
+            FlutterIcons.person_add_mdi,
             size: 30.0,
             color: Colors.black87,
           ),

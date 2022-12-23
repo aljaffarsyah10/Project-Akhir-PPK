@@ -1,4 +1,8 @@
+import 'package:autentikasi/pages/album.dart';
+import 'package:autentikasi/pages/daftar_obat.dart';
+import 'package:autentikasi/pages/daftar_pasien.dart';
 import 'package:autentikasi/pages/dashboard.dart';
+import 'package:autentikasi/pages/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:firebase_core/firebase_core.dart';
@@ -80,6 +84,10 @@ class MyApp extends StatelessWidget {
           routes: {
             AddProductPage.route: (ctx) => AddProductPage(),
             EditProductPage.route: (ctx) => EditProductPage(),
+            albumPage.route: (ctx) => albumPage(),
+            ListProductPage.route: (ctx) => ListProductPage(),
+            DaftarObatView.route: (ctx) => DaftarObatView(),
+            DaftarPasienView.route: (ctx) => DaftarPasienView(),
           },
         ),
       ),

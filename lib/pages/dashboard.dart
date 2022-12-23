@@ -33,7 +33,7 @@ class Dashboard extends StatelessWidget {
               SizedBox(
                 height: 20.0,
               ),
-              SingleNewsCard(),
+            SingleNewsCard(),
               SizedBox(
                 height: 30.0,
               ),

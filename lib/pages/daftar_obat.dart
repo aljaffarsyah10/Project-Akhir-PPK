@@ -31,6 +31,8 @@ class Obat {
 }
 
 class DaftarObatView extends StatelessWidget {
+  static const route = "daftar_obatview";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class DaftarObatView extends StatelessWidget {
         //   icon: Icon(Icons.logout),
         //   onPressed: () => Provider.of<Auth>(context, listen: false).logout(),
         // ),
-        title: Text("All Obat"),
+        title: Text("Medicine Cabinet"),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
